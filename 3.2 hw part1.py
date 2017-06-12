@@ -1,3 +1,2 @@
-import requests as requests
+import requests
 
-n = requests()
