@@ -118,5 +118,5 @@ create_json_file(
 #Для проверки!
 with open('groups.txt', 'rb') as json_file:
     book = json_file.read()
-    f=json.loads(book)
+    f = json.loads(book)
     pprint(f)
