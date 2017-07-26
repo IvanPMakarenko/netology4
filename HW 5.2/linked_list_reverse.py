@@ -48,13 +48,14 @@ class LinkedList:
             yield current.data
             current = current.next
 
-    def reverse(self) -> None:
-        self.head_v2 = None
-        reverse_list = []
-        for value in self:
-            reverse_list.insert(0,value)
-        rev_link_list = LinkedList(reverse_list)
-        return rev_link_list
+    def reverse(self):
+        previous = None
+        current = self.head
+        while current:
+            #print(current.next, previous, current)
+            current.next, previous, current = previous, current, current.next
+        self.head = previous
+        return self
 
 
 class LinkedListTestCase(unittest.TestCase):
@@ -81,11 +82,11 @@ class LinkedListTestCase(unittest.TestCase):
         for case, data in cases.items():
             with self.subTest(case=case):
                 linked_list = LinkedList(data['items'])
-                reversed_linked_list = linked_list.reverse()
                 print('Ожидание: {}'.format(data['expected_items']))
                 print('До обращения: {}'.format(list(linked_list)))
-                print('После обращения: {}'.format(list(reversed_linked_list)))
+                linked_list.reverse()
+                print('После обращения: {}'.format(list(linked_list)))
                 self.assertListEqual(
                     data['expected_items'],
-                    list(reversed_linked_list),
+                    list(linked_list),
                 )
