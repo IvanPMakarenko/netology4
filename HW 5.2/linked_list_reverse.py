@@ -52,7 +52,6 @@ class LinkedList:
         previous = None
         current = self.head
         while current:
-            #print(current.next, previous, current)
             current.next, previous, current = previous, current, current.next
         self.head = previous
         return self
